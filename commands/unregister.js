@@ -1,15 +1,20 @@
+const Discord = require('discord.js');
 const db = require("../database");
 
 module.exports = {
-	name: '!register',
-	description: 'Register!',
+	name: '!unregister',
+	description: 'Unregister!',
 	execute(msg, args) {
-		if (args.length < 1) {
-			msg.channel.send('Please specify a ScoreSaber ID. Example: \`!register ID\`');
-		} else if (!db.isValidSSID(args[0])) {
-			msg.channel.send(db.invalidSSIDMessage);
-		} else {
-			db.addUser(msg.author.id, args[0], msg.author.tag, msg);
-		}
+		msg.channel.send("Are you sure you want to unregister? (y/n)");
+		const collector = new Discord.MessageCollector(msg.channel, m => m.author.id === msg.author.id, { time: 10000 });
+		collector.on('collect', message => {
+			if (message.content == "y") {
+				db.removeUser(msg.author.id, msg);
+				return collector.stop();
+			} else {
+				message.channel.send("Cancelled removal.");
+				return collector.stop();
+			}
+		});
 	},
 };

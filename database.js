@@ -67,7 +67,7 @@ const removeUser = (discordID, msg) => {
         if (err) {
             msg.channel.send(`**ERROR** when getting user with ID \`${discordID}\``);
         } else if (!row) {
-            msg.channel.send('That ID is not registered in the database.')
+            msg.channel.send('That user is not registered in the database.')
         } else {
             db.run(`
                 DELETE FROM users
@@ -76,7 +76,7 @@ const removeUser = (discordID, msg) => {
                 if (err) {
                     msg.channel.send(`**ERROR** when removing user with ID \`${discordID}\``);
                 } else {
-                    msg.channel.send(`Successfully removed record with discordID \`${discordID}\``)
+                    msg.channel.send(`Successfully unregisterd \`${row.username}\` \`[${discordID}]\``)
                 }
             });
         }
