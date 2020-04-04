@@ -12,7 +12,7 @@ module.exports = {
 				db.removeUser(msg.author.id, msg);
 				return collector.stop();
 			} else {
-				message.channel.send("Cancelled removal.");
+				message.channel.send("Cancelled unregistration.");
 				return collector.stop();
 			}
 		});

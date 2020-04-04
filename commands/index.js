@@ -1,5 +1,6 @@
 module.exports = {
     Register: require('./register'),
     Unregister: require('./unregister'),
-    Database: require('./db')
+    Database: require('./db'),
+    Rankup: require('./rankup'),
 };
