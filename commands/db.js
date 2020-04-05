@@ -1,9 +1,13 @@
 const db = require("../database");
+const DB_CHANNEL = '696149988819992646';
 
 module.exports = {
 	name: '!db',
 	description: 'Database Operation!',
 	execute(msg, args) {
+		if (msg.channel.id !== DB_CHANNEL) {
+			return;
+		}
 		if (!msg.member.roles.find(r => r.name === "Admin")) {
 			msg.channel.send('The role \`Admin\` is required to run this command.');
 			return;

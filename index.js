@@ -23,9 +23,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-    //TODO: Check only specific channels
-
-    if (msg.content.charAt(0) !== '!' || !msg.member.roles.find(r => r.name === "Admin")) {
+    if (msg.content.charAt(0) !== '!') {
         return;
     }
     const args = msg.content.split(/ +/);
